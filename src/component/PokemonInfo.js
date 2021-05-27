@@ -36,7 +36,6 @@ const PokemonInfo = () => {
     pokemonFullInformation,
   } = useContext(PokedexContext);
 
-  console.log(pokemonFullInformation);
   const [isImgLoading, setIsImgLoading] = useState(true);
 
   const { id: id_url } = useParams();
