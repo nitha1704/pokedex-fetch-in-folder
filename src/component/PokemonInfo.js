@@ -44,7 +44,6 @@ const PokemonInfo = () => {
       ? `https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${id_url}.png`
       : `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id_url}.png`;
 
-  console.log(pokemonInformation1[pokemonIndex]);
   const prevPokemon = pokemonInformation1
     ? pokemonInformation1[pokemonIndex - 1]
     : undefined;
