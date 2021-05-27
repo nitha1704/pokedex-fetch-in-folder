@@ -21,6 +21,8 @@ const GlobalContext = ({ children }) => {
   const [pokemonInformation1, setPokemonInformation1] = useState([]);
   const [pokemonInformation2, setPokemonInformation2] = useState([]);
 
+  const [pokemonFullInformation, setPokemonFullInformation] = useState([]);
+
   // Scroll Top Position
   const [scrollTopPosition, setScrollTopPosition] = useState(0);
 
@@ -143,7 +145,67 @@ const GlobalContext = ({ children }) => {
     //     })
     //   : null;
 
-    const pokemonInfo1 = pokemonData.map((item) => {
+    // const pokemonInfo1 = pokemonData.map((item) => {
+    //   return {
+    //     id: item.id,
+    //     name: item.name,
+    //     height: {
+    //       decimetres: item.height,
+    //       centimeter: item.height * 10,
+    //       feet: Number(item.height * 0.328084).toFixed(2),
+    //     },
+    //     weight: {
+    //       killogram: Math.round(item.weight * 0.1),
+    //       pound: Number(item.weight * 0.220462).toFixed(2),
+    //     },
+    //     stat: item.stats.reduce((acc, total) => {
+    //       if (!acc[total.stat.name]) {
+    //         acc[total.stat.name] = total.base_stat;
+    //       }
+    //       return acc;
+    //     }, {}),
+    //     abilities: item.abilities
+    //       .map(({ ability }) => {
+    //         return (
+    //           ability.name.charAt(0).toUpperCase() + ability.name.substring(1)
+    //         );
+    //       })
+    //       .join(", "),
+    //     EVs: item.stats
+    //       .filter((stat) => {
+    //         return stat.effort > 0;
+    //       })
+    //       .map((item) => {
+    //         return `${item.effort} ${item.stat.name.split(" ").map((char) => {
+    //           return char.charAt(0).toUpperCase() + char.substring(1);
+    //         })}`;
+    //       })
+    //       .join(", "),
+    //     type: item.types.map(({ type }) => {
+    //       return type.name.charAt(0).toUpperCase() + type.name.substring(1);
+    //     }),
+    //   };
+    // });
+
+    // const pokemonInfo2 = pokemonData.map((item) => {
+    //   return {
+    //     id: item.id,
+    //     name: item.name,
+    //     captureRate: Math.round((100 / 255) * item.capture_rate), //convert to percentage
+    //     genderRatio: {
+    //       originalRate: item.gender_rate,
+    //       femaleRate: item.gender_rate * 12.5,
+    //       maleRate: (8 - item.gender_rate) * 12.5,
+    //     },
+    //     eggGroups: item.egg_groups.map(({ name }) => {
+    //       return name.charAt(0).toUpperCase() + name.substring(1);
+    //     }),
+    //     hatchSteps: 255 * (item.hatch_counter + 1),
+    //     description: item.flavor_text_entries,
+    //   };
+    // });
+
+    const pokemonFullData = pokemonData.map((item) => {
       return {
         id: item.id,
         name: item.name,
@@ -182,13 +244,6 @@ const GlobalContext = ({ children }) => {
         type: item.types.map(({ type }) => {
           return type.name.charAt(0).toUpperCase() + type.name.substring(1);
         }),
-      };
-    });
-
-    const pokemonInfo2 = pokemonData.map((item) => {
-      return {
-        id: item.id,
-        name: item.name,
         captureRate: Math.round((100 / 255) * item.capture_rate), //convert to percentage
         genderRatio: {
           originalRate: item.gender_rate,
@@ -199,7 +254,7 @@ const GlobalContext = ({ children }) => {
           return name.charAt(0).toUpperCase() + name.substring(1);
         }),
         hatchSteps: 255 * (item.hatch_counter + 1),
-        description: item.flavor_text_entries,
+        description: item.flavor_text_entries
       };
     });
 
@@ -209,8 +264,9 @@ const GlobalContext = ({ children }) => {
       setPokemonFilter(pokemonData);
       setPokemonSearchData(searchBarInfo);
       // Pokemon Single Page Data
-      setPokemonInformation1(pokemonInfo1);
-      setPokemonInformation2(pokemonInfo2);
+      // setPokemonInformation1(pokemonInfo1);
+      // setPokemonInformation2(pokemonInfo2);
+      setPokemonFullInformation(pokemonFullData);
     } else {
       setPokemonFilter(undefined);
     }
@@ -240,7 +296,7 @@ const GlobalContext = ({ children }) => {
         // Pokemon Single Page Data
         pokemonInformation1,
         pokemonInformation2,
-
+        pokemonFullInformation,
         // Types Color
         typesColor,
 
